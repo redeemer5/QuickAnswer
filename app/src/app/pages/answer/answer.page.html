@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Quick answer</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <div *ngFor="let ques of ques$">
+    <ion-card>
+      <ion-card-title> <img src="../../../assets/answer.jpg"> </ion-card-title>
+      <ion-card-subtitle style="text-align: center;">{{ques.question}}</ion-card-subtitle>
+    </ion-card>
+  </div>
+
+<h3 style="text-align: center;">Answers</h3>
+<div *ngFor = "let answ of answ$">
+  <ion-card>
+    <ion-card-title>{{answ.answer}}</ion-card-title>
+    <ion-card-subtitle style="text-align: center;">Was this answer helpful?</ion-card-subtitle>
+    <ion-card-content>
+      <table>
+        <tr>
+          <td style="width: 100px;"> <ion-button expand="full" color="success" (click)="positiveRate(answ.aid)">Yes</ion-button> </td>
+          <td style="width: 100px;"> <ion-button expand="full" color="danger" (click)="negativeRate(answ.aid)">No</ion-button> </td>
+          <td style="width: 100px;"> <ion-button expand="full" color="warning">Delete</ion-button> </td>
+        </tr>
+      </table>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+  
+  <ion-item>
+    <ion-label position="floating">Post your answer here</ion-label>
+    <ion-textarea [(ngModel)]="answer"></ion-textarea>
+  </ion-item>
+  <ion-button (click)="postAnswer()" expand="block">Post</ion-button>
+</ion-content>
