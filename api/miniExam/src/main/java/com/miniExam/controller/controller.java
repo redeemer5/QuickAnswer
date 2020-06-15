@@ -126,7 +126,7 @@ public class controller {
 		
 		// delete question by id
 		@GetMapping("/deleteQuestion/{qid}")
-		public void deleteAnswer(@PathVariable int qid)
+		public void deleteQuestion(@PathVariable int qid)
 		{
 			qService.deleteQuestion(qid);
 		}
@@ -144,4 +144,11 @@ public class controller {
 		{
 			emailService.sendEmail(email,message);	
 		}
+		
+		// delete answer by id
+				@GetMapping("/deleteAnswer/{aid}")
+				public void deleteAnswer(@PathVariable int aid)
+				{
+					aService.deleteAnswer(aid);
+				}
 }

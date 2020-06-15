@@ -51,7 +51,22 @@ public class answerService {
 
 	        //Execute query
 	        query.execute();
-
+	 }
 	 
+	 // delete question by calling stored procedure in the sql database
+	 public void deleteAnswer(int aid)
+	 {
+	        //"login" this is the name of your procedure
+	        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("deleteAnswer"); 
+
+	        //Declare the parameters in the same order
+	        query.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
+
+	        //Pass the parameter values
+	        query.setParameter(1, aid);
+
+	        //Execute query
+	        query.execute();
+
 	 }
 }
