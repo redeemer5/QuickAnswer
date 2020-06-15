@@ -35,17 +35,19 @@
         <tr>
           <td style="width: 100px;"> <ion-button expand="full" color="success" (click)="positiveRate(answ.aid)">Yes</ion-button> </td>
           <td style="width: 100px;"> <ion-button expand="full" color="danger" (click)="negativeRate(answ.aid)">No</ion-button> </td>
-          <td style="width: 100px;"> <ion-button expand="full" color="warning">Delete</ion-button> </td>
+          <td style="width: 100px;"> <ion-button expand="full" color="warning" (click)="deleteAnswer(answ.aid)">Delete</ion-button> </td>
         </tr>
       </table>
     </ion-card-content>
   </ion-card>
 </div>
 
-  
-  <ion-item>
-    <ion-label position="floating">Post your answer here</ion-label>
-    <ion-textarea [(ngModel)]="answer"></ion-textarea>
-  </ion-item>
-  <ion-button (click)="postAnswer()" expand="block">Post</ion-button>
+  <div id="bottom">
+    <ion-item>
+      <ion-label position="floating">Post your answer here</ion-label>
+      <ion-textarea [(ngModel)]="answer"></ion-textarea>
+    </ion-item>
+    <ion-button (click)="postAnswer()" expand="block">Post</ion-button>
+  </div>
+
 </ion-content>

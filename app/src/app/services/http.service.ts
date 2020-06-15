@@ -118,4 +118,9 @@ export class HttpService {
     {
       return this.http.get('http://localhost:8080/sendEmail/' + email +'/'+ message)
     }
+
+    deleteAnswer(aid)
+    {
+      return this.http.get('http://localhost:8080/deleteAnswer/' + aid);
+    }
 }

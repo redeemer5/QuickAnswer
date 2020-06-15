@@ -115,4 +115,11 @@ export class AnswerPage implements OnInit {
     await alert.present();
   }
 
+  deleteAnswer(aid)
+  {
+    this.http.deleteAnswer(aid).subscribe();
+    this.doRefresh(event);
+    // console.log(aid);
+  }
+
 }
