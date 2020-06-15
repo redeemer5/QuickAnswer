@@ -22,6 +22,7 @@ import com.miniExam.models.userModel;
 import com.miniExam.repository.answerRepo;
 import com.miniExam.repository.questionRepo;
 import com.miniExam.repository.topicRepo;
+import com.miniExam.repository.userRepo;
 import com.miniExam.service.answerService;
 import com.miniExam.service.questionService;
 import com.miniExam.service.emailService;
@@ -47,6 +48,9 @@ public class controller {
 	
 	@Autowired
 	public emailService emailService;
+	
+	@Autowired
+	public userRepo uRepo;
 	
 	
 	// gets all the topic
@@ -150,5 +154,25 @@ public class controller {
 				public void deleteAnswer(@PathVariable int aid)
 				{
 					aService.deleteAnswer(aid);
+				}
+				
+				
+				// register new user
+				@PostMapping("/registerUser")
+				public ResponseEntity<Object> registerNewUser(@Valid @RequestBody userModel user) 
+				{
+							userModel userModel = uRepo.save(user);
+					
+							URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uid}")
+									.buildAndExpand(userModel.getUid()).toUri();
+					
+							return ResponseEntity.created(location).build();	
+				}
+				
+				// get user by email & password
+				@GetMapping("/getUserDetails/{email}/{password}")
+				public List<userModel> getUserDetails(@PathVariable String email,@PathVariable String password)
+				{
+					return uRepo.findByEmailAndPassword(email, password);
 				}
 }
